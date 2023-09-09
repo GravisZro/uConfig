@@ -66,7 +66,8 @@ bool PDFLoader::loadPage(PDFPage *pdfPage)
 void PDFLoader::loadBoxes(PDFPage *pdfPage)
 {
     PDFTextBox *parentTextBox = nullptr;
-    for (Poppler::TextBox *ptextBox : pdfPage->page()->textList())
+    const auto& texts = pdfPage->page()->textList();
+    for (Poppler::TextBox *ptextBox : texts)
     {
         PDFTextBox *textBox = new PDFTextBox(ptextBox->text(), ptextBox->boundingBox());
         textBox->_page = pdfPage;
